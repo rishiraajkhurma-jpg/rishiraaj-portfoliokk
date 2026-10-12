@@ -89,13 +89,14 @@
   const flight = document.querySelector('.flight');
   if (flight) {
     const NOW = 0.8;
+    // each label has its own offset (dx, dy from the point) so none touch the line or each other
     const stops = [
-      { at: 0.06, when: 'Apr 2024', what: 'E-Cell IITB' },
-      { at: 0.25, when: 'Jan 2025', what: 'IITB Rocket Team' },
-      { at: 0.42, when: 'May 2025', what: 'NextStopIIT' },
-      { at: 0.58, when: 'Jun 2026', what: "Tripole Gears, Founder's Office" },
-      { at: 0.69, when: 'Jun 2026', what: 'IITB Sports Media Head' },
-      { at: NOW,  when: 'Oct 2026', what: 'TestRelic AI, product strategy', now: true },
+      { at: 0.06, when: 'Apr 2024', what: 'E-Cell IITB', dx: -32, dy: -45, anchor: 'start' },
+      { at: 0.25, when: 'Jan 2025', what: 'IITB Rocket Team', dx: -12, dy: -68, anchor: 'end' },
+      { at: 0.42, when: 'May 2025', what: 'NextStopIIT', dx: 12, dy: 26, anchor: 'start' },
+      { at: 0.58, when: 'Jun 2026', what: "Tripole Gears, Founder's Office", dx: -14, dy: -32, anchor: 'end' },
+      { at: 0.69, when: 'Jun 2026', what: 'IITB Sports Media Head', dx: -14, dy: -34, anchor: 'end' },
+      { at: NOW,  when: 'Oct 2026', what: 'TestRelic AI, product strategy', dx: -14, dy: -33, anchor: 'end', now: true },
     ];
     const NS = 'http://www.w3.org/2000/svg';
     const path = flight.querySelector('.flight__path');
@@ -118,19 +119,17 @@
       for (const k in attrs) n.setAttribute(k, attrs[k]);
       return n;
     };
+    const gap = window.matchMedia('(max-width: 860px)').matches ? 21 : 18; // line spacing for the larger phone labels
     const pts = stops.map((s) => {
       const p = path.getPointAtLength(L * s.at);
       const g = el('g', { class: 'flight__pt' + (s.next ? ' flight__next' : '') });
-      // low on the curve: label below-right; high: above-left. Both sit on the empty side.
-      const right = s.at < 0.55;
-      const tx = right ? p.x + 12 : p.x - 18;
-      let ty = right ? p.y + 26 : p.y - 26;
-      if (s.at < 0.3) ty = p.y - 46; // early stops sit near the axis, so label above
+      const tx = p.x + s.dx;
+      const ty = p.y + s.dy;
       if (s.now) g.appendChild(el('circle', { cx: p.x, cy: p.y, r: 6, class: 'flight__ring' }));
       if (!s.next) g.appendChild(el('circle', { cx: p.x, cy: p.y, r: s.now ? 7 : 6, class: 'flight__dot' + (s.now ? ' flight__dot--now' : '') }));
-      const t1 = el('text', { x: tx, y: ty, 'text-anchor': right ? 'start' : 'end', class: 'flight__when' });
+      const t1 = el('text', { x: tx, y: ty, 'text-anchor': s.anchor, class: 'flight__when' });
       t1.textContent = s.when;
-      const t2 = el('text', { x: tx, y: ty + 18, 'text-anchor': right ? 'start' : 'end', class: 'flight__what' });
+      const t2 = el('text', { x: tx, y: ty + gap, 'text-anchor': s.anchor, class: 'flight__what' });
       t2.textContent = s.what;
       g.append(t1, t2);
       group.appendChild(g);

@@ -461,7 +461,7 @@ ul { padding: 0; list-style: none; }
 
 @media (max-width: 860px) {
   .work__head { grid-template-columns: 1fr; }
-  .flight__when, .flight__what { font-size: 19px; }
+  .flight__when, .flight__what { font-size: 16px; }
 }
 
 .work__groups { position: relative; margin-top: clamp(48px, 6vw, 80px); padding-left: 28px; }
