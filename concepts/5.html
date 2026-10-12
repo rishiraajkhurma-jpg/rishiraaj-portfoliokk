@@ -1,0 +1,556 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Concept 5: Sentence with pills</title>
+  <meta name="description" content="Aerospace Engineering at IIT Bombay. Product management, strategy and AI agents. Product Management Consultant at TestRelic AI, McKinsey Forward Fellow.">
+  <meta name="author" content="Rishiraaj Khurma">
+  <meta name="theme-color" content="#E9EAE6">
+
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Rishiraaj Khurma">
+  <meta property="og:description" content="IIT Bombay Aerospace. Product, strategy and AI agents.">
+  <meta property="og:image" content="/assets/og.png">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,300..900;1,62..125,300..900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/styles.css">
+  <script>
+    (function () {
+      var d = document.documentElement, t = null;
+      d.classList.add('js');
+      try { t = localStorage.getItem('theme'); } catch (e) {}
+      if (t !== 'light' && t !== 'dark') t = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      d.setAttribute('data-theme', t);
+    })();
+  </script>
+<style>
+.hero__block, .hero__name { display: none; }
+.cx { position: relative; z-index: 2; width: 100%; max-width: var(--max); margin: 0 auto; padding-top: clamp(24px, 4vw, 56px); }
+.cx-actions { display: flex; flex-wrap: wrap; gap: 10px; }
+.cx img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.js .cx-in { opacity: 0; transform: translateY(14px); animation: cxIn .9s var(--ease) forwards; }
+@keyframes cxIn { to { opacity: 1; transform: none; } }
+
+.c5-h { font-size: clamp(1.9rem, 3.9vw, 3.6rem); line-height: 1.2; font-weight: 800; letter-spacing: -0.03em; font-variation-settings: "wdth" 108; max-width: 27ch; }
+.c5-w { display: inline-block; }
+.js .c5-w { opacity: 0; transform: translateY(.3em); animation: cxIn .7s var(--ease) forwards; }
+.c5-face { width: 1.15em; height: 1.15em; border-radius: 50%; overflow: hidden; vertical-align: -0.18em; margin: 0 .08em 0 .12em; background: var(--paper-2); box-shadow: 0 0 0 3px var(--paper), 0 0 0 5px var(--orange); }
+.c5-pill { display: inline-flex; align-items: center; gap: .2em; padding: .02em .38em .06em; border-radius: .5em; background: var(--paper-2); border: 1.5px solid var(--rule); line-height: 1.05; transition: transform .35s var(--spring); }
+.c5-pill:hover { transform: translateY(-4px) rotate(-1.5deg); }
+.c5-pill .dot { width: .22em; height: .22em; margin-right: .12em; }
+.c5-pill--ink { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+.c5-pill--orange { background: var(--orange); color: #fff; border-color: var(--orange); }
+.c5-foot { display: flex; justify-content: space-between; align-items: center; gap: 20px; flex-wrap: wrap; margin-top: clamp(26px, 3.4vw, 44px); }
+.c5-foot p { color: var(--muted); font-size: 17px; max-width: 48ch; }
+</style>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <header class="bar">
+    <div class="bar__inner">
+      <nav aria-label="Sections">
+        <ul class="bar__nav">
+          <li><a href="#about">About</a></li>
+          <li><a href="#work">Experience</a></li>
+          <li><a href="#cases">Case work</a></li>
+          <li><a href="#honors">Honors</a></li>
+        </ul>
+      </nav>
+      <div class="bar__end">
+        <button type="button" class="theme" aria-label="Switch to dark theme" aria-pressed="false">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="2"/>
+            <path d="M12 3.5a8.5 8.5 0 0 1 0 17z" fill="currentColor"/>
+          </svg>
+        </button>
+        <a class="bar__cta" href="#contact">Get in touch</a>
+      </div>
+    </div>
+    <div class="bar__progress" aria-hidden="true"><span></span></div>
+  </header>
+
+  <main id="main">
+
+    <!-- ============ Hero ============ -->
+    <section class="hero" id="top" aria-labelledby="hero-name">
+      <span class="mark mark--tl" aria-hidden="true"></span>
+      <span class="mark mark--tr" aria-hidden="true"></span>
+      <span class="mark mark--ml" aria-hidden="true"></span>
+      <span class="mark mark--mr" aria-hidden="true"></span>
+
+
+      <div class="cx c5">
+        <h1 class="c5-h" id="hero-name">
+          <span class="c5-w">Hi, I'm</span> <span class="c5-w">Rishiraaj</span>
+          <span class="c5-w c5-face"><img src="/assets/pfp.png" alt="" onerror="this.onerror=null;this.src='https://rishiraaj-khurma-portfolio.vercel.app/pfp.png'"></span><span class="c5-w">.</span>
+          <span class="c5-w">I study aerospace at</span> <span class="c5-w"><span class="c5-pill ">IIT Bombay</span></span><span class="c5-w">,</span>
+          <span class="c5-w">build product at</span> <span class="c5-w"><span class="c5-pill c5-pill--ink"><span class="dot"></span>TestRelic AI</span></span>
+          <span class="c5-w">and lead sports media for</span> <span class="c5-w"><span class="c5-pill c5-pill--orange">IITB Sports</span></span><span class="c5-w">.</span>
+        </h1>
+        <div class="c5-foot">
+          <p>McKinsey Forward fellow. Harvard Aspire Leader. 40+ startups helped to pitch.</p>
+          <div class="cx-actions">
+          <a class="btn btn--solid" href="mailto:rishiraajkhurma@gmail.com">Email me</a>
+          <a class="btn" href="#cases">See case work</a>
+        </div>
+        </div>
+      </div>
+      <script>
+        document.querySelectorAll('.c5-w').forEach(function (w, i) { w.style.animationDelay = (0.05 + i * 0.06) + 's'; });
+      </script>
+
+      <!-- 3D card deck -->
+      <div class="deck" aria-label="Highlights">
+        <div class="deck__rig">
+          <a class="card card--navy" href="#work" style="--i:-6;--a:6">
+            <span class="card__kick">Leadership</span>
+            <span class="card__big">40+</span>
+            <span class="card__foot">Startups I helped pitch to investors at E-Cell</span>
+          </a>
+          <a class="card card--paper" href="#cases" data-case="ey" style="--i:-5;--a:5">
+            <span class="card__kick">EY CAFTA finalist</span>
+            <span class="card__big">$500M</span>
+            <span class="card__foot">Currency risk plan for an unhedged exposure</span>
+          </a>
+          <a class="card card--orange" href="#work" style="--i:-4;--a:4">
+            <span class="card__kick">IITB Rocket Team</span>
+            <span class="card__big card__big--word">Mission patch</span>
+            <span class="card__foot">Designed the official patch for SA Cup 2025</span>
+          </a>
+          <a class="card card--white" href="#cases" data-case="axis" style="--i:-3;--a:3">
+            <span class="card__kick">Equity research</span>
+            <span class="card__big">16%</span>
+            <span class="card__foot">Upside in my BUY call on Axis Bank</span>
+          </a>
+          <a class="card card--ink" href="#cases" data-case="blinkbot" style="--i:-2;--a:2">
+            <span class="card__kick">Product case</span>
+            <span class="card__big">₹9 Cr</span>
+            <span class="card__foot">Monthly GMV projected for BlinkBot, Blinkit</span>
+          </a>
+          <a class="card card--orange" href="#work" style="--i:-1;--a:1">
+            <span class="card__kick">Fellow</span>
+            <span class="card__big card__big--word">McKinsey Forward</span>
+            <span class="card__foot">Global program on structured problem solving</span>
+          </a>
+          <a class="card card--photo" href="#about" style="--i:0;--a:0">
+            <img src="/assets/pfp.png" alt="Rishiraaj Khurma" width="480" height="600"
+                 onerror="this.onerror=null;this.src='https://rishiraaj-khurma-portfolio.vercel.app/pfp.png'">
+            <span class="card__foot">Rishiraaj Khurma<small>Aerospace, IIT Bombay</small></span>
+          </a>
+          <a class="card card--white" href="#work" style="--i:1;--a:1">
+            <span class="card__kick"><span class="dot" aria-hidden="true"></span>Now</span>
+            <span class="card__big card__big--word">TestRelic AI</span>
+            <span class="card__foot">Product management consultant</span>
+          </a>
+          <a class="card card--navy" href="#work" style="--i:2;--a:2">
+            <span class="card__kick">IITB Sports and E-Cell</span>
+            <span class="card__big">150K+</span>
+            <span class="card__foot">Followers across the pages I've run</span>
+          </a>
+          <a class="card card--paper" href="#work" style="--i:3;--a:3">
+            <span class="card__kick">Harvard Business School</span>
+            <span class="card__big card__big--word">Aspire Leaders</span>
+            <span class="card__foot">HBS faculty-led leadership program</span>
+          </a>
+          <a class="card card--ink" href="#work" style="--i:4;--a:4">
+            <span class="card__kick">Founder's Office</span>
+            <span class="card__big card__big--word">Tripole Gears</span>
+            <span class="card__foot">A brand seen on Shark Tank India</span>
+          </a>
+          <a class="card card--white" href="#about" style="--i:5;--a:5">
+            <span class="card__kick">Events</span>
+            <span class="card__big">1 lakh+</span>
+            <span class="card__foot">Footfall at events I've handled</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ Logos strip ============ -->
+    <section class="orgs" aria-label="Organisations">
+      <p class="orgs__label">Worked and learned with</p>
+      <ul class="orgs__list">
+        <li class="org org--a">TestRelic AI</li>
+        <li class="org org--b">McKinsey &amp; Company</li>
+        <li class="org org--e">Harvard Business School</li>
+        <li class="org org--d">IITB Sports</li>
+        <li class="org org--f">E-Cell</li>
+      </ul>
+    </section>
+
+    <!-- ============ About ============ -->
+    <section class="about section" id="about" aria-labelledby="about-h">
+      <div class="about__left">
+        <p class="kicker">About</p>
+        <h2 id="about-h" class="h2">A builder who thinks in systems and ships in sprints.</h2>
+      </div>
+      <div class="about__right">
+        <p class="about__lead">I'm an Aerospace Engineering student at IIT Bombay with a strong pull toward consulting, product management and strategy. Engineering taught me to break hard problems down to first principles, and I use the same lens on business problems.</p>
+        <p>From scaling content campaigns to 900% engagement growth, to coordinating Asia's largest entrepreneurship summit, I've spent the last two years learning what it takes to create impact at scale.</p>
+        <dl class="figures">
+          <div><dt>Startups helped pitch to investors</dt><dd data-count="40" data-suffix="+">40+</dd></div>
+          <div><dt>Footfall at events I've handled</dt><dd data-count="1" data-suffix=" lakh+">1 lakh+</dd></div>
+          <div><dt>Followers across pages I've managed</dt><dd data-count="150" data-suffix="K+">150K+</dd></div>
+          <div><dt>Engagement growth</dt><dd data-count="900" data-suffix="%">900%</dd></div>
+        </dl>
+      </div>
+    </section>
+
+    <!-- ============ Experience ============ -->
+    <section class="work section" id="work" aria-labelledby="work-h">
+      <div class="work__head">
+        <div>
+          <p class="kicker">Experience</p>
+          <h2 id="work-h" class="h2">Where I've worked and led.</h2>
+          <p class="work__intro">From campus clubs at IIT Bombay to product and strategy work at an AI startup.</p>
+        </div>
+        <figure class="flight" aria-label="Career path from 2024 to now, with what comes next">
+          <svg class="flight__svg" viewBox="0 0 640 440" role="img" aria-hidden="true">
+            <defs>
+              <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+                <path d="M40 0H0V40" fill="none" class="flight__grid"/>
+              </pattern>
+            </defs>
+            <rect class="flight__gridrect" x="0" y="0" width="640" height="440" fill="url(#grid)"/>
+            <line x1="24" y1="416" x2="624" y2="416" class="flight__axis"/>
+            <line x1="24" y1="416" x2="24" y2="16" class="flight__axis"/>
+            <path class="flight__ahead" d=""/>
+            <path class="flight__path" d="M28 410 C 250 404, 430 300, 612 28"/>
+            <g class="flight__points"></g>
+          </svg>
+        </figure>
+      </div>
+
+      <div class="work__groups">
+        <div class="track" aria-hidden="true"><span class="track__fill"></span></div>
+
+        <div class="group group--work">
+          <h3 class="group__title">Work<span>Internships and jobs</span></h3>
+
+          <article class="role role--current">
+            <p class="role__when"><time>Oct 2026</time> to now<span>Remote, U.S.-based startup</span></p>
+            <div class="role__body">
+              <h4 class="role__org">TestRelic AI</h4>
+              <p class="role__title">Product Management Consultant (internship)</p>
+              <ul>
+                <li>Setting up product management processes: discovery, documentation, prioritization, metrics and stakeholder communication.</li>
+                <li>Building a Now / Next / Later roadmap with at least five build-ready product initiatives.</li>
+                <li>Researching the test-intelligence and agent-memory market to shape positioning and roadmap priorities.</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="role">
+            <p class="role__when"><time>Jun 2026</time> to <time>Jul 2026</time><span>Delhi, India</span></p>
+            <div class="role__body">
+              <h4 class="role__org">Tripole Gears</h4>
+              <p class="role__title">Founder's Office (internship)</p>
+              <ul>
+                <li>Worked directly with the founders on cross-functional strategy, operations and growth.</li>
+                <li>Drove brand and partnership initiatives across new product lines.</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="role">
+            <p class="role__when"><time>May 2025</time> to <time>Aug 2025</time><span>New Delhi</span></p>
+            <div class="role__body">
+              <h4 class="role__org">NextStopIIT</h4>
+              <p class="role__title">Marketing (internship)</p>
+              <ul>
+                <li>Designed 12+ short-form campaigns that grew engagement by 900%.</li>
+                <li>Built influencer partnerships across 120K+ student aspirants, driving 30K+ cumulative views.</li>
+                <li>Cut follower churn to about 1.2% through retention-focused storytelling.</li>
+              </ul>
+            </div>
+          </article>
+        </div>
+
+        <div class="group group--lead">
+          <h3 class="group__title">Leadership<span>Positions at IIT Bombay</span></h3>
+
+          <article class="role role--current">
+            <p class="role__when"><time>Jun 2026</time> to now<span>Mumbai</span></p>
+            <div class="role__body">
+              <h4 class="role__org">IIT Bombay Sports</h4>
+              <p class="role__title">Institute Sports Media Head</p>
+              <ul>
+                <li>Lead media, coverage and storytelling for institute-wide sports across every tournament and team.</li>
+                <li>Drive the IITB Sports brand through campaigns, match-day content and athlete features.</li>
+                <li>Run media across 20+ pages with 40K+ followers, directing a team of 35 conveners across 150+ institute events.</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="role">
+            <p class="role__when"><time>Apr 2024</time> to <time>Dec 2025</time><span>Mumbai</span></p>
+            <div class="role__body">
+              <h4 class="role__org">The Entrepreneurship Cell, IIT Bombay</h4>
+              <p class="role__title">Creatives, Partnerships and PR Coordinator</p>
+              <ul>
+                <li>Drove creative strategy for flagship events Eureka! and E-Summit; the launch video was screened at PVR.</li>
+                <li>Produced video and social content with a cumulative reach of 300K+ views.</li>
+                <li>Led Eureka! zonals in Mumbai and Bangalore: 20+ startup pitches, plus jury and mentor coordination.</li>
+                <li>Lifted registrations by 67% through PR campaigns and government body partnerships.</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="role">
+            <p class="role__when"><time>Jan 2025</time> to <time>Jul 2025</time><span>Mumbai</span></p>
+            <div class="role__body">
+              <h4 class="role__org">IITB Rocket Team</h4>
+              <p class="role__title">Junior Business and Design Member</p>
+              <ul>
+                <li>Lifted brand presence by 60% through creative social campaigns.</li>
+                <li>Built sponsor pitch decks and opened outreach to partners like HCL Software.</li>
+                <li>Designed the official mission patch for SA Cup 2025 (about 40K attendees).</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="role">
+            <p class="role__when"><time>Nov 2025</time> to <time>Feb 2026</time><span>Mumbai</span></p>
+            <div class="role__body">
+              <h4 class="role__org">Placement Office, IIT Bombay</h4>
+              <p class="role__title">Interview Coordinator</p>
+              <ul>
+                <li>Coordinated on-day interviews between candidates and panelists with zero conflicts.</li>
+                <li>Tightened interview logistics and stakeholder communication, improving turnaround time.</li>
+              </ul>
+            </div>
+          </article>
+        </div>
+
+        <div class="group group--prog">
+          <h3 class="group__title">Programs<span>Fellowships and courses</span></h3>
+
+          <article class="role role--current">
+            <p class="role__when"><time>Mar 2026</time> to now<span>Global</span></p>
+            <div class="role__body">
+              <h4 class="role__org">McKinsey &amp; Company</h4>
+              <p class="role__title">Fellow, McKinsey Forward Program</p>
+              <ul>
+                <li>Selected for McKinsey's global program on problem solving, structured thinking and decision making.</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="role">
+            <p class="role__when"><time>Feb 2026</time> to <time>Mar 2026</time><span>Harvard Business School</span></p>
+            <div class="role__body">
+              <h4 class="role__org">Aspire Institute</h4>
+              <p class="role__title">Aspire Leaders Program</p>
+              <ul>
+                <li>Worked through HBS faculty-led case studies on leadership, ethics and digital transformation.</li>
+                <li>Built leadership skills in Harvard faculty-led workshops with a global peer cohort.</li>
+              </ul>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ Case work (dark panel) ============ -->
+    <section class="cases" id="cases" aria-labelledby="cases-h">
+      <div class="cases__panel">
+        <div class="cases__head">
+          <div>
+            <p class="kicker kicker--light">Case work</p>
+            <h2 id="cases-h" class="h2">Problems I've taken apart.</h2>
+          </div>
+          <p class="cases__intro">Product teardowns, research and competition cases. Pick one to read the problem, what I did and what it would move.</p>
+        </div>
+
+        <div class="cases__layout">
+          <div class="cases__index" role="tablist" aria-label="Cases" aria-orientation="vertical">
+            <button class="case-tab" role="tab" id="t-blinkbot" aria-controls="p-blinkbot" aria-selected="true">
+              <span class="case-tab__kind">Product</span>
+              <span class="case-tab__title">BlinkBot for Blinkit</span>
+              <span class="case-tab__fig">₹9 Cr / month</span>
+            </button>
+            <button class="case-tab" role="tab" id="t-district" aria-controls="p-district" aria-selected="false" tabindex="-1">
+              <span class="case-tab__kind">Product</span>
+              <span class="case-tab__title">District by Zomato</span>
+              <span class="case-tab__fig">3x conversion</span>
+            </button>
+            <button class="case-tab" role="tab" id="t-axis" aria-controls="p-axis" aria-selected="false" tabindex="-1">
+              <span class="case-tab__kind">Research</span>
+              <span class="case-tab__title">Axis Bank equity research</span>
+              <span class="case-tab__fig">16% upside</span>
+            </button>
+            <button class="case-tab" role="tab" id="t-ey" aria-controls="p-ey" aria-selected="false" tabindex="-1">
+              <span class="case-tab__kind">Finance</span>
+              <span class="case-tab__title">EY CAFTA risk and liquidity</span>
+              <span class="case-tab__fig">$500M exposure</span>
+            </button>
+            <button class="case-tab" role="tab" id="t-aero" aria-controls="p-aero" aria-selected="false" tabindex="-1">
+              <span class="case-tab__kind">Operations</span>
+              <span class="case-tab__title">Aerospace ops strategy</span>
+              <span class="case-tab__fig">22% faster</span>
+            </button>
+            <button class="case-tab" role="tab" id="t-deorb" aria-controls="p-deorb" aria-selected="false" tabindex="-1">
+              <span class="case-tab__kind">Hackathon</span>
+              <span class="case-tab__title">DeORB, Smart India Hackathon</span>
+              <span class="case-tab__fig">Institute round</span>
+            </button>
+          </div>
+
+          <div class="cases__panels">
+            <article class="case" role="tabpanel" id="p-blinkbot" aria-labelledby="t-blinkbot" tabindex="0">
+              <p class="case__meta">Product case for Blinkit, independent. <time>May 2026</time> to now.</p>
+              <h3 class="case__title">BlinkBot: a value-exchange basket optimizer</h3>
+              <p class="case__big"><span>₹9 Cr</span> extra GMV a month, projected across 4.5L daily orders</p>
+              <ul>
+                <li>Found the core drop-off trigger: “checkout shock”, a sudden 25 to 30% fee jump that breaks impulse buying and drives cart abandonment.</li>
+                <li>Defined the persona (Aarav, 22, tier 1 city) and mapped the psychology: users don't reject the fee, they reject feeling penalized with no perceived value.</li>
+                <li>Designed BlinkBot, an agentic GenAI flow in three LLM steps (context scan, dynamic bundling, generative nudge) that turns the delivery fee into a personalized value exchange in real time.</li>
+                <li>Projected 20% less cart abandonment, ₹35 AOV lift per order and 20% better D30 repeat purchase.</li>
+              </ul>
+              <p class="case__links">
+                <a href="https://drive.google.com/file/d/13JqOaMulJGSCNLsYfBoL2JAouONL_U6Y/view?usp=sharing" target="_blank" rel="noopener">View slides</a>
+                <a href="https://blinkbotai.lovable.app" target="_blank" rel="noopener">Try the prototype</a>
+              </p>
+            </article>
+
+            <article class="case" role="tabpanel" id="p-district" aria-labelledby="t-district" tabindex="0">
+              <p class="case__meta">Product case for District by Zomato, independent. <time>Jan 2025</time> to <time>Apr 2025</time>.</p>
+              <h3 class="case__title">District by Zomato: product strategy</h3>
+              <p class="case__big"><span>3x</span> projected conversion lift within a 2 to 5 km radius</p>
+              <ul>
+                <li>Segmented 105M users into behavioral cohorts and surfaced 4 friction points in India's ₹4,500 Cr events market.</li>
+                <li>Benchmarked 3 competitors to build a mood-based discovery positioning for 25M Gen Z users.</li>
+                <li>Proposed “Who's Near You Tonight” with group split payments.</li>
+              </ul>
+              <p class="case__links">
+                <a href="https://drive.google.com/file/d/1SCaFkXVV465xN4ebJC2KT2j3y9N6NiCo/view?usp=sharing" target="_blank" rel="noopener">View slides</a>
+              </p>
+            </article>
+
+            <article class="case" role="tabpanel" id="p-axis" aria-labelledby="t-axis" tabindex="0">
+              <p class="case__meta">Finance Club, IIT Bombay. <time>Oct 2025</time> to <time>Nov 2025</time>.</p>
+              <h3 class="case__title">Equity research: Axis Bank Ltd.</h3>
+              <p class="case__big"><span>BUY</span> at ₹1,160 with a ₹1,350 target, 16% upside</p>
+              <ul>
+                <li>Analyzed 7 years of performance: ₹16.5L Cr assets, 17% ROE, 4.1% NIM, 15% capital adequacy.</li>
+                <li>Benchmarked against 3 major private banks on P/E, net NPA (0.4%) and EPS growth.</li>
+              </ul>
+              <p class="case__links">
+                <a href="https://drive.google.com/file/d/1Oq4AeHaycqKcXLXpIfnddOMw5mjNQ_Pj/view?usp=sharing" target="_blank" rel="noopener">Read the report</a>
+              </p>
+            </article>
+
+            <article class="case" role="tabpanel" id="p-ey" aria-labelledby="t-ey" tabindex="0">
+              <p class="case__meta">EY CAFTA Case Championship, finalist. <time>Sep 2025</time> to <time>Nov 2025</time>.</p>
+              <h3 class="case__title">Financial risk and liquidity management</h3>
+              <p class="case__big"><span>18%</span> fewer working-capital shortfalls in the cash model</p>
+              <ul>
+                <li>Built a currency risk strategy for a $500M unhedged exposure in Nigeria.</li>
+                <li>Designed a cash and liquidity model forecasting $450M in export inflows.</li>
+                <li>Recommended surplus-cash policies for an INR 15 to 20K Cr revenue scale at an 8 to 10% target yield.</li>
+              </ul>
+              <p class="case__links">
+                <a href="https://drive.google.com/file/d/1MUNu1fK9w3oQ-B3bmoziqNy0Lb9kVl91/view?usp=sharing" target="_blank" rel="noopener">View slides</a>
+              </p>
+            </article>
+
+            <article class="case" role="tabpanel" id="p-aero" aria-labelledby="t-aero" tabindex="0">
+              <p class="case__meta">Course project, Intro to Management. <time>Jan 2025</time> to <time>Apr 2025</time>.</p>
+              <h3 class="case__title">Operations strategy for a global aerospace leader</h3>
+              <p class="case__big"><span>22%</span> faster delivery across 3 major defense contracts</p>
+              <ul>
+                <li>Designed a delivery roadmap after analyzing the supply chain and manufacturing setup.</li>
+                <li>Modeled the financial impact: ₹12 Cr additional revenue over 2 years through retention.</li>
+              </ul>
+            </article>
+
+            <article class="case" role="tabpanel" id="p-deorb" aria-labelledby="t-deorb" tabindex="0">
+              <p class="case__meta">Smart India Hackathon 2024, Ministry of Civil Aviation. <time>Sep 2024</time> to <time>Dec 2024</time>.</p>
+              <h3 class="case__title">DeORB: drone surveys for airport perimeter security</h3>
+              <p class="case__big"><span>6</span> person IIT Bombay team, I led business and pitch</p>
+              <ul>
+                <li>Built a drone-based aerial survey solution for airport perimeter security.</li>
+                <li>Cleared the institute round and presented the prototype and go-to-market to an expert panel.</li>
+              </ul>
+              <p class="case__links">
+                <a href="https://drive.google.com/file/d/1jrsrOm20Nrbj3mEBCHLb-6gn8_rd56DR/view?usp=sharing" target="_blank" rel="noopener">View slides</a>
+              </p>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ Honors + toolkit ============ -->
+    <section class="honors section" id="honors" aria-labelledby="honors-h">
+      <p class="kicker">Honors</p>
+      <h2 id="honors-h" class="h2">Recognition along the way.</h2>
+      <ul class="honors__list">
+        <li>
+          <span class="honors__big">Gold</span>
+          <h3>National taekwondo</h3>
+          <p>3rd Grand Open National Taekwondo Championship, Talkatora Stadium, Delhi. Red-black belt certified.</p>
+        </li>
+        <li>
+          <span class="honors__big">Excellence</span>
+          <h3>Class 12 CBSE boards</h3>
+          <p>Certificate of Excellence from the former Education Minister of New Delhi.</p>
+        </li>
+        <li>
+          <span class="honors__big">2nd runner-up</span>
+          <h3>School overall</h3>
+          <p>Recognised across academics and co-curriculars at St. Andrews Scots Sr. Sec. School, New Delhi.</p>
+        </li>
+      </ul>
+
+      <div class="kit">
+        <div>
+          <h3 class="kit__title">What I'm good at</h3>
+          <ul class="chips">
+            <li>Consulting</li><li>Product management</li><li>Strategy</li><li>Equity research</li><li>Brand and PR</li><li>Generative AI</li><li>User personas</li><li>Quantitative research</li><li>Storytelling</li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="kit__title">Tools I use</h3>
+          <ul class="chips chips--quiet">
+            <li>Advanced Excel</li><li>Notion</li><li>Jira</li><li>Tableau</li><li>Power BI</li><li>Figma</li><li>Python</li><li>C++</li><li>NumPy</li><li>After Effects</li><li>Photoshop</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ Contact (orange panel) ============ -->
+    <section class="contact" id="contact" aria-labelledby="contact-h">
+      <div class="contact__panel">
+        <h2 id="contact-h" class="contact__h">Have a problem worth solving?</h2>
+        <div class="contact__row">
+          <p class="contact__p">Let's talk about consulting, product and strategy: internships, case competitions, or just a chat.</p>
+          <div class="contact__actions">
+            <div class="contact__mail">
+              <a href="mailto:rishiraajkhurma@gmail.com" class="contact__email">rishiraajkhurma@gmail.com</a>
+              <button type="button" class="copy" data-copy="rishiraajkhurma@gmail.com">Copy email</button>
+            </div>
+            <ul class="contact__links">
+              <li><a href="https://www.linkedin.com/in/rishiraajkhurma" target="_blank" rel="noopener">LinkedIn</a></li>
+              <li><a href="tel:+919818846623">+91 98188 46623</a></li>
+            </ul>
+          </div>
+        </div>
+        <p class="contact__giant" aria-hidden="true">Khurma</p>
+      </div>
+      <footer class="foot">
+        <p>© 2026 Rishiraaj Khurma</p>
+        <p>Mumbai, India</p>
+      </footer>
+    </section>
+  </main>
+
+  <script src="/assets/main.js" defer></script>
+</body>
+</html>
