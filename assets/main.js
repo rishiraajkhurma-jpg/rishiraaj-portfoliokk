@@ -50,17 +50,52 @@
     }
   }
 
+  /* ---------- Each card takes a turn in the spotlight ---------- */
+  if (deck && !reduce) {
+    const cards = [...deck.querySelectorAll('.card')];
+    const order = [3, 4, 2, 5, 1, 6, 0]; // centre outwards
+    let k = 0, timer = null, paused = false, inView = true;
+    const visibleCards = () => order.map((i) => cards[i]).filter((c) => c && c.offsetParent !== null && getComputedStyle(c).display !== 'none');
+    const step = () => {
+      if (paused || !inView || !deck.classList.contains('is-settled')) return;
+      const list = visibleCards();
+      cards.forEach((c) => c.classList.remove('is-active'));
+      list[k % list.length].classList.add('is-active');
+      k++;
+    };
+    const start = () => { if (!timer) timer = setInterval(step, 2200); };
+    setTimeout(() => { step(); start(); }, 2800);
+    deck.addEventListener('pointerenter', (e) => {
+      if (e.pointerType === 'mouse') { paused = true; cards.forEach((c) => c.classList.remove('is-active')); }
+    });
+    deck.addEventListener('pointerleave', (e) => { if (e.pointerType === 'mouse') paused = false; });
+    if ('IntersectionObserver' in window) new IntersectionObserver((es) => { inView = es[0].isIntersecting; }).observe(deck);
+
+    // touch: first tap highlights a card, second tap follows its link
+    cards.forEach((c) => c.addEventListener('click', (e) => {
+      if (window.matchMedia('(hover: none)').matches && !c.classList.contains('is-active')) {
+        e.preventDefault();
+        e.stopImmediatePropagation();
+        paused = true;
+        cards.forEach((x) => x.classList.remove('is-active'));
+        c.classList.add('is-active');
+        clearTimeout(c._resume);
+        c._resume = setTimeout(() => { paused = false; }, 6000);
+      }
+    }, true));
+  }
+
   /* ---------- Flight path (draws when Experience comes into view) ---------- */
   const flight = document.querySelector('.flight');
   if (flight) {
     const NOW = 0.8;
     const stops = [
       { at: 0.06, when: 'Apr 2024', what: 'E-Cell IITB' },
-      { at: 0.30, when: 'May 2025', what: 'NextStopIIT' },
-      { at: 0.50, when: 'Mar 2026', what: 'McKinsey Forward' },
-      { at: 0.64, when: 'Jun 2026', what: 'IITB Sports Media Head' },
-      { at: NOW,  when: 'Oct 2026', what: 'TestRelic AI', now: true },
-      { at: 1.0,  when: 'Next', what: 'Open to product and strategy roles', next: true },
+      { at: 0.25, when: 'Jan 2025', what: 'IITB Rocket Team' },
+      { at: 0.42, when: 'May 2025', what: 'NextStopIIT' },
+      { at: 0.58, when: 'Jun 2026', what: "Tripole Gears, Founder's Office" },
+      { at: 0.69, when: 'Jun 2026', what: 'IITB Sports Media Head' },
+      { at: NOW,  when: 'Oct 2026', what: 'TestRelic AI, product strategy', now: true },
     ];
     const NS = 'http://www.w3.org/2000/svg';
     const path = flight.querySelector('.flight__path');
@@ -90,7 +125,7 @@
       const right = s.at < 0.55;
       const tx = right ? p.x + 12 : p.x - 18;
       let ty = right ? p.y + 26 : p.y - 26;
-      if (s.at < 0.15) ty = p.y - 46;
+      if (s.at < 0.3) ty = p.y - 46; // early stops sit near the axis, so label above
       if (s.now) g.appendChild(el('circle', { cx: p.x, cy: p.y, r: 6, class: 'flight__ring' }));
       if (!s.next) g.appendChild(el('circle', { cx: p.x, cy: p.y, r: s.now ? 7 : 6, class: 'flight__dot' + (s.now ? ' flight__dot--now' : '') }));
       const t1 = el('text', { x: tx, y: ty, 'text-anchor': right ? 'start' : 'end', class: 'flight__when' });
@@ -121,7 +156,6 @@
         if (t < 1) requestAnimationFrame(tick);
         else {
           flight.classList.add('is-drawn');
-          setTimeout(() => pts[pts.length - 1].g.classList.add('is-on'), 450);
         }
       };
       requestAnimationFrame(tick);
