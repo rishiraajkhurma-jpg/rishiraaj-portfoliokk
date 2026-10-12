@@ -50,39 +50,80 @@
     }
   }
 
-  /* ---------- Each card takes a turn in the spotlight ---------- */
-  if (deck && !reduce) {
-    const cards = [...deck.querySelectorAll('.card')];
-    const order = [3, 4, 2, 5, 1, 6, 0]; // centre outwards
-    let k = 0, timer = null, paused = false, inView = true;
-    const visibleCards = () => order.map((i) => cards[i]).filter((c) => c && c.offsetParent !== null && getComputedStyle(c).display !== 'none');
-    const step = () => {
-      if (paused || !inView || !deck.classList.contains('is-settled')) return;
-      const list = visibleCards();
-      cards.forEach((c) => c.classList.remove('is-active'));
-      list[k % list.length].classList.add('is-active');
-      k++;
-    };
-    const start = () => { if (!timer) timer = setInterval(step, 2200); };
-    setTimeout(() => { step(); start(); }, 2800);
-    deck.addEventListener('pointerenter', (e) => {
-      if (e.pointerType === 'mouse') { paused = true; cards.forEach((c) => c.classList.remove('is-active')); }
+  /* ---------- Card belt: cards drift left to right forever ---------- */
+  if (deck && rig && !reduce) {
+    const originals = [...rig.querySelectorAll('.card')];
+    const n = originals.length;
+    // a second copy of the set keeps the belt full so cards wrap off-screen
+    originals.forEach((c) => {
+      const d = c.cloneNode(true);
+      d.setAttribute('aria-hidden', 'true');
+      d.tabIndex = -1;
+      const pos = +c.style.getPropertyValue('--i') + n;
+      d.style.setProperty('--i', pos);
+      d.style.setProperty('--a', Math.abs(pos));
+      rig.appendChild(d);
     });
-    deck.addEventListener('pointerleave', (e) => { if (e.pointerType === 'mouse') paused = false; });
-    if ('IntersectionObserver' in window) new IntersectionObserver((es) => { inView = es[0].isIntersecting; }).observe(deck);
+    const cards = [...rig.querySelectorAll('.card')];
+    const N = cards.length;
+    const half = N / 2;
+    const base = cards.map((c) => +c.style.getPropertyValue('--i'));
+    const emph = cards.map(() => 0);
+    const SPEED = 0.16; // cards per second
+    let offset = 0, last = null, running = false, inView = true, hovered = null, holdUntil = 0;
 
-    // touch: first tap highlights a card, second tap follows its link
-    cards.forEach((c) => c.addEventListener('click', (e) => {
-      if (window.matchMedia('(hover: none)').matches && !c.classList.contains('is-active')) {
-        e.preventDefault();
-        e.stopImmediatePropagation();
-        paused = true;
-        cards.forEach((x) => x.classList.remove('is-active'));
-        c.classList.add('is-active');
-        clearTimeout(c._resume);
-        c._resume = setTimeout(() => { paused = false; }, 6000);
-      }
-    }, true));
+    const wrap = (v) => ((v + half) % N + N) % N - half;
+    const frame = (t) => {
+      if (last === null) last = t;
+      const dt = Math.min(0.05, (t - last) / 1000);
+      last = t;
+      if (!hovered && t > holdUntil) offset += SPEED * dt;
+      cards.forEach((c, k) => {
+        const i = wrap(base[k] + offset);
+        const a = Math.abs(i);
+        // the card passing the centre rises; a hovered or tapped card takes over
+        const target = hovered ? (c === hovered ? 1 : 0) : Math.max(0, 1 - a / 0.6);
+        emph[k] += (target - emph[k]) * 0.12;
+        const e = emph[k];
+        c.style.setProperty('--i', i.toFixed(4));
+        c.style.setProperty('--a', a.toFixed(4));
+        c.style.setProperty('--lift', (e * 50).toFixed(1) + 'px');
+        c.style.setProperty('--z', (e * 120).toFixed(1) + 'px');
+        c.style.setProperty('--tilt', (1 - e).toFixed(3));
+        c.style.setProperty('--scale', (1 + e * 0.06).toFixed(3));
+        c.style.opacity = Math.max(0, Math.min(1, (half - a) / 1.5)).toFixed(3);
+        c.classList.toggle('is-active', e > 0.55);
+        c.classList.toggle('no-show', a > half - 0.4);
+      });
+      if (inView) requestAnimationFrame(frame); else { running = false; last = null; }
+    };
+    const start = () => { if (!running) { running = true; requestAnimationFrame(frame); } };
+
+    // hand over from the deal-in animation to the belt
+    setTimeout(() => { deck.classList.add('is-belt'); start(); }, 2700);
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver((es) => {
+        inView = es[0].isIntersecting;
+        if (inView && deck.classList.contains('is-belt')) start();
+      }).observe(deck);
+    }
+
+    cards.forEach((c) => {
+      c.addEventListener('pointerenter', (e) => { if (e.pointerType === 'mouse') hovered = c; });
+      c.addEventListener('pointerleave', (e) => { if (e.pointerType === 'mouse' && hovered === c) hovered = null; });
+      c.addEventListener('focus', () => { hovered = c; });
+      c.addEventListener('blur', () => { if (hovered === c) hovered = null; });
+      // touch: first tap brings a card forward, second tap opens it
+      c.addEventListener('click', (e) => {
+        if (window.matchMedia('(hover: none)').matches && hovered !== c) {
+          e.preventDefault();
+          e.stopImmediatePropagation();
+          hovered = c;
+          clearTimeout(c._release);
+          c._release = setTimeout(() => { if (hovered === c) hovered = null; holdUntil = performance.now() + 800; }, 5000);
+        }
+      }, true);
+    });
   }
 
   /* ---------- Flight path (draws when Experience comes into view) ---------- */
