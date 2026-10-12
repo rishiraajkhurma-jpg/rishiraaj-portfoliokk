@@ -45,7 +45,7 @@
       const tx = right ? p.x + 12 : p.x - 18;
       const anchor = right ? 'start' : 'end';
       let ty = right ? p.y + 26 : p.y - 26;
-      if (s.at < 0.15) ty = p.y - 34; // first stop sits on the axis, so go above
+      if (s.at < 0.15) ty = p.y - 46; // first stop sits on the axis, so go above
 
       if (s.now) g.appendChild(el('circle', { cx: p.x, cy: p.y, r: 6, class: 'flight__ring' }));
       if (!s.next) {
