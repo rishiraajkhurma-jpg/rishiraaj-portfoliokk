@@ -1,10 +1,59 @@
 (() => {
   const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const fine = window.matchMedia('(pointer: fine)').matches;
+  const onView = (el, cb, opts = { threshold: 0.35 }) => {
+    if (!el) return;
+    if (!('IntersectionObserver' in window)) { cb(); return; }
+    const io = new IntersectionObserver((es) => {
+      if (es.some((e) => e.isIntersecting)) { io.disconnect(); cb(); }
+    }, opts);
+    io.observe(el);
+  };
 
-  /* ---------- Flight path ---------- */
+  /* ---------- 3D card deck ---------- */
+  const hero = document.querySelector('.hero');
+  const deck = document.querySelector('.deck');
+  const rig = document.querySelector('.deck__rig');
+  if (deck && rig) {
+    if (reduce) {
+      deck.classList.add('is-dealt', 'is-settled');
+    } else {
+      // deal the cards once the name has opened up
+      requestAnimationFrame(() => setTimeout(() => deck.classList.add('is-dealt'), 60));
+      setTimeout(() => deck.classList.add('is-settled'), 2600);
+    }
+
+    // tilt the whole deck toward the pointer
+    if (!reduce && fine) {
+      let tx = 0, ty = 0, cx = 0, cy = 0, running = false, visible = true;
+      const loop = () => {
+        cx += (tx - cx) * 0.07;
+        cy += (ty - cy) * 0.07;
+        rig.style.setProperty('--ry', (cx * 16).toFixed(2) + 'deg');
+        rig.style.setProperty('--rx', (-cy * 10 + 4).toFixed(2) + 'deg');
+        rig.style.setProperty('--sheen', (cx * 60).toFixed(1) + 'deg');
+        if (visible && (Math.abs(tx - cx) > 0.001 || Math.abs(ty - cy) > 0.001)) requestAnimationFrame(loop);
+        else running = false;
+      };
+      const kick = () => { if (!running) { running = true; requestAnimationFrame(loop); } };
+      hero.addEventListener('pointermove', (e) => {
+        const r = hero.getBoundingClientRect();
+        tx = (e.clientX - r.left) / r.width - 0.5;
+        ty = (e.clientY - r.top) / r.height - 0.5;
+        kick();
+      });
+      hero.addEventListener('pointerleave', () => { tx = 0; ty = 0; kick(); });
+      if ('IntersectionObserver' in window) {
+        new IntersectionObserver((es) => { visible = es[0].isIntersecting; }).observe(hero);
+      }
+      rig.style.setProperty('--rx', '4deg');
+    }
+  }
+
+  /* ---------- Flight path (draws when Experience comes into view) ---------- */
   const flight = document.querySelector('.flight');
   if (flight) {
-    const NOW = 0.8; // how far along the curve "today" sits
+    const NOW = 0.8;
     const stops = [
       { at: 0.06, when: 'Apr 2024', what: 'E-Cell IITB' },
       { at: 0.30, when: 'May 2025', what: 'NextStopIIT' },
@@ -19,59 +68,52 @@
     const group = flight.querySelector('.flight__points');
     const L = path.getTotalLength();
 
-    // Dashed "ahead" segment: sample the curve from NOW to the end
     let d = '';
     for (let i = 0; i <= 40; i++) {
       const p = path.getPointAtLength(L * (NOW + (1 - NOW) * i / 40));
       d += (i ? 'L' : 'M') + p.x.toFixed(1) + ' ' + p.y.toFixed(1);
     }
     ahead.setAttribute('d', d);
-
     const drawn = L * NOW;
     path.style.strokeDasharray = `${drawn} ${L}`;
+    path.style.strokeDashoffset = reduce ? 0 : drawn;
 
     const el = (tag, attrs) => {
       const n = document.createElementNS(NS, tag);
       for (const k in attrs) n.setAttribute(k, attrs[k]);
       return n;
     };
-
     const pts = stops.map((s) => {
       const p = path.getPointAtLength(L * s.at);
       const g = el('g', { class: 'flight__pt' + (s.next ? ' flight__next' : '') });
-      // Low on the curve: label below-right. High on the curve: above-left.
-      // Both sit on the empty side of the line.
+      // low on the curve: label below-right; high: above-left. Both sit on the empty side.
       const right = s.at < 0.55;
       const tx = right ? p.x + 12 : p.x - 18;
-      const anchor = right ? 'start' : 'end';
       let ty = right ? p.y + 26 : p.y - 26;
-      if (s.at < 0.15) ty = p.y - 46; // first stop sits on the axis, so go above
-
+      if (s.at < 0.15) ty = p.y - 46;
       if (s.now) g.appendChild(el('circle', { cx: p.x, cy: p.y, r: 6, class: 'flight__ring' }));
-      if (!s.next) {
-        g.appendChild(el('circle', { cx: p.x, cy: p.y, r: s.now ? 7 : 6, class: 'flight__dot' + (s.now ? ' flight__dot--now' : '') }));
-      }
-      const t1 = el('text', { x: tx, y: ty, 'text-anchor': anchor, class: 'flight__when' });
+      if (!s.next) g.appendChild(el('circle', { cx: p.x, cy: p.y, r: s.now ? 7 : 6, class: 'flight__dot' + (s.now ? ' flight__dot--now' : '') }));
+      const t1 = el('text', { x: tx, y: ty, 'text-anchor': right ? 'start' : 'end', class: 'flight__when' });
       t1.textContent = s.when;
-      const t2 = el('text', { x: tx, y: ty + 18, 'text-anchor': anchor, class: 'flight__what' });
+      const t2 = el('text', { x: tx, y: ty + 18, 'text-anchor': right ? 'start' : 'end', class: 'flight__what' });
       t2.textContent = s.what;
       g.append(t1, t2);
       group.appendChild(g);
       return { g, s };
     });
 
-    if (reduce) {
-      path.style.strokeDashoffset = 0;
-      pts.forEach(({ g }) => g.classList.add('is-on'));
-      flight.classList.add('is-drawn');
-    } else {
-      const DUR = 1900, START = 450;
-      path.style.strokeDashoffset = drawn;
+    const draw = () => {
+      if (reduce) {
+        pts.forEach(({ g }) => g.classList.add('is-on'));
+        flight.classList.add('is-drawn');
+        return;
+      }
+      const DUR = 1900;
       const ease = (t) => 1 - Math.pow(1 - t, 3);
       let t0 = null;
       const tick = (ts) => {
         if (t0 === null) t0 = ts;
-        const t = Math.min(1, Math.max(0, (ts - t0 - START) / DUR));
+        const t = Math.min(1, (ts - t0) / DUR);
         const e = ease(t);
         path.style.strokeDashoffset = drawn * (1 - e);
         const reached = e * NOW;
@@ -83,30 +125,36 @@
         }
       };
       requestAnimationFrame(tick);
-    }
+    };
+    onView(flight, draw, { threshold: 0.45 });
   }
 
   /* ---------- Scroll-linked bits ---------- */
+  const barEl = document.querySelector('.bar');
   const bar = document.querySelector('.bar__progress span');
   const track = document.querySelector('.track__fill');
   const groups = document.querySelector('.work__groups');
+  const giant = document.querySelector('.contact__giant');
   let ticking = false;
-
   const onScroll = () => {
     const doc = document.documentElement;
+    const y = doc.scrollTop;
     const max = doc.scrollHeight - doc.clientHeight;
-    if (bar) bar.style.transform = `scaleX(${max > 0 ? doc.scrollTop / max : 0})`;
+    barEl.classList.toggle('is-scrolled', y > 20);
+    if (bar) bar.style.transform = `scaleX(${max > 0 ? y / max : 0})`;
     if (track && groups) {
       const r = groups.getBoundingClientRect();
-      const mid = window.innerHeight * 0.6;
-      const p = Math.min(1, Math.max(0, (mid - r.top) / r.height));
+      const p = Math.min(1, Math.max(0, (window.innerHeight * 0.6 - r.top) / r.height));
       track.style.transform = `scaleY(${p})`;
+    }
+    if (giant && !reduce) {
+      const r = giant.getBoundingClientRect();
+      const p = Math.min(1, Math.max(0, 1 - r.top / window.innerHeight));
+      giant.style.setProperty('--gx', (-p * 12).toFixed(2) + '%');
     }
     ticking = false;
   };
-  window.addEventListener('scroll', () => {
-    if (!ticking) { requestAnimationFrame(onScroll); ticking = true; }
-  }, { passive: true });
+  window.addEventListener('scroll', () => { if (!ticking) { requestAnimationFrame(onScroll); ticking = true; } }, { passive: true });
   window.addEventListener('resize', onScroll);
   onScroll();
 
@@ -117,8 +165,10 @@
     const io = new IntersectionObserver((entries) => {
       entries.forEach((en) => {
         if (!en.isIntersecting) return;
-        links.forEach((a) => a.toggleAttribute('aria-current', a.getAttribute('href') === '#' + en.target.id));
-        links.forEach((a) => { if (a.hasAttribute('aria-current')) a.setAttribute('aria-current', 'true'); });
+        links.forEach((a) => {
+          if (a.getAttribute('href') === '#' + en.target.id) a.setAttribute('aria-current', 'true');
+          else a.removeAttribute('aria-current');
+        });
       });
     }, { rootMargin: '-45% 0px -50% 0px' });
     sections.forEach((s) => io.observe(s));
@@ -126,13 +176,11 @@
 
   /* ---------- Figures count up once ---------- */
   const figs = document.querySelectorAll('.figures dd[data-count]');
-  if (!reduce && 'IntersectionObserver' in window && figs.length) {
-    const fo = new IntersectionObserver((entries, obs) => {
-      if (!entries.some((e) => e.isIntersecting)) return;
-      obs.disconnect();
+  if (!reduce && figs.length) {
+    onView(document.querySelector('.figures'), () => {
       figs.forEach((dd) => {
         const target = +dd.dataset.count, suf = dd.dataset.suffix || '';
-        const t0 = performance.now(), D = 1200;
+        const t0 = performance.now(), D = 1300;
         const step = (now) => {
           const t = Math.min(1, (now - t0) / D);
           dd.textContent = Math.round(target * (1 - Math.pow(1 - t, 3))) + suf;
@@ -141,16 +189,15 @@
         requestAnimationFrame(step);
       });
     }, { threshold: 0.6 });
-    fo.observe(document.querySelector('.figures'));
   }
 
   /* ---------- Case tabs (wide screens) ---------- */
   const layout = document.querySelector('.cases__layout');
+  let selectCase = () => {};
   if (layout) {
     const tabs = [...layout.querySelectorAll('.case-tab')];
     const panels = tabs.map((t) => document.getElementById(t.getAttribute('aria-controls')));
     const wide = window.matchMedia('(min-width: 901px)');
-
     const select = (i, focus) => {
       tabs.forEach((t, j) => {
         const on = i === j;
@@ -160,29 +207,40 @@
       });
       if (focus) tabs[i].focus();
     };
-
     const apply = () => {
       layout.classList.toggle('is-tabs', wide.matches);
-      panels.forEach((p) => wide.matches ? p.setAttribute('role', 'tabpanel') : p.removeAttribute('role'));
+      panels.forEach((p) => (wide.matches ? p.setAttribute('role', 'tabpanel') : p.removeAttribute('role')));
     };
-
     tabs.forEach((t, i) => {
       t.addEventListener('click', () => select(i));
       t.addEventListener('keydown', (e) => {
-        const k = e.key;
         let n = null;
-        if (k === 'ArrowDown' || k === 'ArrowRight') n = (i + 1) % tabs.length;
-        if (k === 'ArrowUp' || k === 'ArrowLeft') n = (i - 1 + tabs.length) % tabs.length;
-        if (k === 'Home') n = 0;
-        if (k === 'End') n = tabs.length - 1;
+        if (e.key === 'ArrowDown' || e.key === 'ArrowRight') n = (i + 1) % tabs.length;
+        if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') n = (i - 1 + tabs.length) % tabs.length;
+        if (e.key === 'Home') n = 0;
+        if (e.key === 'End') n = tabs.length - 1;
         if (n !== null) { e.preventDefault(); select(n, true); }
       });
     });
-
     select(0);
     apply();
     wide.addEventListener('change', apply);
+
+    selectCase = (id) => {
+      const i = tabs.findIndex((t) => t.id === 't-' + id);
+      if (i < 0) return;
+      if (wide.matches) select(i);
+      else panels[i].scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' });
+    };
   }
+
+  // hero cards that point at a specific case open that case
+  document.querySelectorAll('.card[data-case]').forEach((c) => {
+    c.addEventListener('click', () => {
+      const id = c.dataset.case;
+      setTimeout(() => selectCase(id), window.matchMedia('(min-width: 901px)').matches ? 0 : 600);
+    });
+  });
 
   /* ---------- Copy email ---------- */
   document.querySelectorAll('.copy').forEach((btn) => {

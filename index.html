@@ -6,7 +6,7 @@
   <title>Rishiraaj Khurma</title>
   <meta name="description" content="Aerospace Engineering at IIT Bombay. Product management, strategy and AI agents. Product Management Consultant at TestRelic AI, McKinsey Forward Fellow.">
   <meta name="author" content="Rishiraaj Khurma">
-  <meta name="theme-color" content="#13203A">
+  <meta name="theme-color" content="#E9EAE6">
 
   <meta property="og:type" content="website">
   <meta property="og:title" content="Rishiraaj Khurma">
@@ -17,14 +17,14 @@
   <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,300..800;1,62..125,300..800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,300..900;1,62..125,300..900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/assets/styles.css">
   <script>document.documentElement.classList.add('js')</script>
 </head>
 <body>
   <a class="skip" href="#main">Skip to content</a>
 
-  <header class="bar" id="top">
+  <header class="bar">
     <div class="bar__inner">
       <a class="bar__name" href="#top" aria-label="Rishiraaj Khurma, back to top">RK</a>
       <nav aria-label="Sections">
@@ -33,38 +33,132 @@
           <li><a href="#work">Experience</a></li>
           <li><a href="#cases">Case work</a></li>
           <li><a href="#honors">Honors</a></li>
-          <li><a href="#contact" class="bar__cta">Contact</a></li>
         </ul>
       </nav>
+      <a class="bar__cta" href="#contact">Get in touch</a>
     </div>
     <div class="bar__progress" aria-hidden="true"><span></span></div>
   </header>
 
   <main id="main">
 
-    <!-- Hero -->
-    <section class="hero" aria-labelledby="hero-name">
-      <h1 class="hero__name" id="hero-name">
-        <span class="hero__line">Rishiraaj</span>
-        <span class="hero__line">Khurma</span>
-      </h1>
+    <!-- ============ Hero ============ -->
+    <section class="hero" id="top" aria-labelledby="hero-name">
+      <span class="mark mark--tl" aria-hidden="true"></span>
+      <span class="mark mark--tr" aria-hidden="true"></span>
+      <span class="mark mark--ml" aria-hidden="true"></span>
+      <span class="mark mark--mr" aria-hidden="true"></span>
 
-      <div class="hero__grid">
-        <div class="hero__copy">
-          <p class="hero__lede">
-            Aerospace engineering at IIT Bombay. I work where product, strategy and AI agents meet, and I like turning messy problems into plans people can act on.
-          </p>
-          <p class="hero__now">
-            Currently a product management consultant at <strong>TestRelic AI</strong>, and head of media for IIT Bombay Sports.
-          </p>
-          <div class="hero__actions">
-            <a class="btn btn--solid" href="mailto:rishiraajkhurma@gmail.com">Email me</a>
-            <a class="btn" href="#cases">See case work</a>
-            <a class="btn btn--plain" href="https://www.linkedin.com/in/rishiraajkhurma" target="_blank" rel="noopener">LinkedIn</a>
-          </div>
-          <p class="hero__where">Based in Mumbai, India. Third-year undergrad.</p>
+      <div class="hero__top">
+        <p class="hero__hey">Hey, I'm</p>
+        <p class="hero__status"><span class="dot" aria-hidden="true"></span>Open to product and strategy roles</p>
+      </div>
+
+      <div class="hero__title">
+        <span class="hero__block" aria-hidden="true"></span>
+        <h1 class="hero__name" id="hero-name">
+          <span class="hero__first">Rishiraaj</span>
+          <span class="hero__last">Khurma</span>
+        </h1>
+      </div>
+
+      <div class="hero__row">
+        <p class="hero__lede">Aerospace engineer at IIT Bombay, working on product, strategy and AI agents.</p>
+        <div class="hero__actions">
+          <a class="btn btn--solid" href="mailto:rishiraajkhurma@gmail.com">Email me</a>
+          <a class="btn" href="#cases">See case work</a>
         </div>
+      </div>
 
+      <a class="badge" href="#about" aria-label="Scroll to about">
+        <svg viewBox="0 0 120 120" aria-hidden="true">
+          <defs><path id="badge-circle" d="M60,60 m-47,0 a47,47 0 1,1 94,0 a47,47 0 1,1 -94,0"/></defs>
+          <text><textPath href="#badge-circle" textLength="292">Portfolio 2026 + IIT Bombay + Aerospace +</textPath></text>
+        </svg>
+        <span class="badge__core"></span>
+      </a>
+
+      <!-- 3D card deck -->
+      <div class="deck" aria-label="Highlights">
+        <div class="deck__rig">
+          <a class="card card--paper" href="#cases" data-case="ey" style="--i:-3;--a:3">
+            <span class="card__kick">EY CAFTA finalist</span>
+            <span class="card__big">$500M</span>
+            <span class="card__foot">Currency risk strategy for an unhedged exposure</span>
+          </a>
+          <a class="card card--ink" href="#cases" data-case="blinkbot" style="--i:-2;--a:2">
+            <span class="card__kick">Product case</span>
+            <span class="card__big">₹9 Cr</span>
+            <span class="card__foot">Monthly GMV, projected, from BlinkBot for Blinkit</span>
+          </a>
+          <a class="card card--orange" href="#work" style="--i:-1;--a:1">
+            <span class="card__kick">Fellow</span>
+            <span class="card__big card__big--word">McKinsey Forward</span>
+            <span class="card__foot">Global program on structured problem solving</span>
+          </a>
+          <a class="card card--photo" href="#about" style="--i:0;--a:0">
+            <img src="/assets/pfp.png" alt="Rishiraaj Khurma" width="480" height="600"
+                 onerror="this.onerror=null;this.src='https://rishiraaj-khurma-portfolio.vercel.app/pfp.png'">
+            <span class="card__foot">Rishiraaj Khurma<small>Aerospace, IIT Bombay</small></span>
+          </a>
+          <a class="card card--white" href="#work" style="--i:1;--a:1">
+            <span class="card__kick"><span class="dot" aria-hidden="true"></span>Now</span>
+            <span class="card__big card__big--word">TestRelic AI</span>
+            <span class="card__foot">Product management consultant</span>
+          </a>
+          <a class="card card--navy" href="#work" style="--i:2;--a:2">
+            <span class="card__kick">IIT Bombay Sports</span>
+            <span class="card__big">40K+</span>
+            <span class="card__foot">Followers across the 20+ pages my media team runs</span>
+          </a>
+          <a class="card card--line" href="#honors" style="--i:3;--a:3">
+            <span class="card__kick">National taekwondo</span>
+            <span class="card__big">Gold</span>
+            <span class="card__foot">Red-black belt, Talkatora Stadium, Delhi</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ Logos strip ============ -->
+    <section class="orgs" aria-label="Organisations">
+      <p class="orgs__label">Worked and learned with</p>
+      <ul class="orgs__list">
+        <li class="org org--a">TestRelic AI</li>
+        <li class="org org--b">McKinsey &amp; Company</li>
+        <li class="org org--c">EY</li>
+        <li class="org org--d">IIT Bombay</li>
+        <li class="org org--e">Harvard Business School</li>
+        <li class="org org--f">E-Cell</li>
+      </ul>
+    </section>
+
+    <!-- ============ About ============ -->
+    <section class="about section" id="about" aria-labelledby="about-h">
+      <div class="about__left">
+        <p class="kicker">About</p>
+        <h2 id="about-h" class="h2">A builder who thinks in systems and ships in sprints.</h2>
+      </div>
+      <div class="about__right">
+        <p class="about__lead">I'm an Aerospace Engineering student at IIT Bombay with a strong pull toward consulting, product management and strategy. Engineering taught me to break hard problems down to first principles, and I use the same lens on business problems.</p>
+        <p>From scaling content campaigns to 900% engagement growth, to coordinating Asia's largest entrepreneurship summit, I've spent the last two years learning what it takes to create impact at scale.</p>
+        <dl class="figures">
+          <div><dt>Content reach</dt><dd data-count="300" data-suffix="K+">300K+</dd></div>
+          <div><dt>Event attendees</dt><dd data-count="50" data-suffix="K+">50K+</dd></div>
+          <div><dt>Engagement growth</dt><dd data-count="900" data-suffix="%">900%</dd></div>
+          <div><dt>Startup pitches led</dt><dd data-count="20" data-suffix="+">20+</dd></div>
+        </dl>
+      </div>
+    </section>
+
+    <!-- ============ Experience ============ -->
+    <section class="work section" id="work" aria-labelledby="work-h">
+      <div class="work__head">
+        <div>
+          <p class="kicker">Experience</p>
+          <h2 id="work-h" class="h2">Where I've worked and led.</h2>
+          <p class="work__intro">Two years of building in public at IIT Bombay, then into product and strategy roles. The dashed line is what comes next.</p>
+        </div>
         <figure class="flight" aria-label="Career path from 2024 to now, with what comes next">
           <svg class="flight__svg" viewBox="0 0 640 440" role="img" aria-hidden="true">
             <defs>
@@ -79,34 +173,8 @@
             <path class="flight__path" d="M28 410 C 250 404, 430 300, 612 28"/>
             <g class="flight__points"></g>
           </svg>
-          <figcaption class="flight__caption">Flight path, 2024 to now. The dashed part is the next role.</figcaption>
         </figure>
       </div>
-    </section>
-
-    <!-- About -->
-    <section class="about section" id="about" aria-labelledby="about-h">
-      <div class="about__photo">
-        <img src="/assets/pfp.png" alt="Rishiraaj Khurma" width="480" height="600" loading="lazy"
-             onerror="this.onerror=null;this.src='https://rishiraaj-khurma-portfolio.vercel.app/pfp.png'">
-      </div>
-      <div class="about__text">
-        <h2 id="about-h" class="h2">A builder who thinks in systems and ships in sprints.</h2>
-        <p>I'm an Aerospace Engineering student at IIT Bombay with a strong pull toward consulting, product management and strategy. Engineering taught me to break hard problems down to first principles, and I use the same lens on business problems.</p>
-        <p>From scaling content campaigns to 900% engagement growth, to coordinating Asia's largest entrepreneurship summit, I've spent the last two years learning what it takes to create impact at scale.</p>
-
-        <dl class="figures">
-          <div><dt>Content reach</dt><dd data-count="300" data-suffix="K+">300K+</dd></div>
-          <div><dt>Event attendees</dt><dd data-count="50" data-suffix="K+">50K+</dd></div>
-          <div><dt>Engagement growth</dt><dd data-count="900" data-suffix="%">900%</dd></div>
-          <div><dt>Startup pitches led</dt><dd data-count="20" data-suffix="+">20+</dd></div>
-        </dl>
-      </div>
-    </section>
-
-    <!-- Experience -->
-    <section class="work section" id="work" aria-labelledby="work-h">
-      <h2 id="work-h" class="h2">Experience</h2>
 
       <div class="work__groups">
         <div class="track" aria-hidden="true"><span class="track__fill"></span></div>
@@ -238,145 +306,154 @@
       </div>
     </section>
 
-    <!-- Case work -->
-    <section class="cases section" id="cases" aria-labelledby="cases-h">
-      <div class="cases__head">
-        <h2 id="cases-h" class="h2">Case work</h2>
-        <p class="cases__intro">Product teardowns, research and competition cases. Pick one to read the problem, what I did and what it would move.</p>
-      </div>
-
-      <div class="cases__layout">
-        <div class="cases__index" role="tablist" aria-label="Cases" aria-orientation="vertical">
-          <button class="case-tab" role="tab" id="t-blinkbot" aria-controls="p-blinkbot" aria-selected="true">
-            <span class="case-tab__kind">Product</span>
-            <span class="case-tab__title">BlinkBot for Blinkit</span>
-            <span class="case-tab__fig">₹9 Cr / month GMV</span>
-          </button>
-          <button class="case-tab" role="tab" id="t-district" aria-controls="p-district" aria-selected="false" tabindex="-1">
-            <span class="case-tab__kind">Product</span>
-            <span class="case-tab__title">District by Zomato</span>
-            <span class="case-tab__fig">3x conversion</span>
-          </button>
-          <button class="case-tab" role="tab" id="t-axis" aria-controls="p-axis" aria-selected="false" tabindex="-1">
-            <span class="case-tab__kind">Research</span>
-            <span class="case-tab__title">Axis Bank equity research</span>
-            <span class="case-tab__fig">16% upside</span>
-          </button>
-          <button class="case-tab" role="tab" id="t-ey" aria-controls="p-ey" aria-selected="false" tabindex="-1">
-            <span class="case-tab__kind">Finance</span>
-            <span class="case-tab__title">EY CAFTA risk and liquidity</span>
-            <span class="case-tab__fig">$500M exposure</span>
-          </button>
-          <button class="case-tab" role="tab" id="t-aero" aria-controls="p-aero" aria-selected="false" tabindex="-1">
-            <span class="case-tab__kind">Operations</span>
-            <span class="case-tab__title">Aerospace ops strategy</span>
-            <span class="case-tab__fig">22% faster delivery</span>
-          </button>
-          <button class="case-tab" role="tab" id="t-deorb" aria-controls="p-deorb" aria-selected="false" tabindex="-1">
-            <span class="case-tab__kind">Hackathon</span>
-            <span class="case-tab__title">DeORB, Smart India Hackathon</span>
-            <span class="case-tab__fig">Cleared institute round</span>
-          </button>
+    <!-- ============ Case work (dark panel) ============ -->
+    <section class="cases" id="cases" aria-labelledby="cases-h">
+      <div class="cases__panel">
+        <div class="cases__head">
+          <div>
+            <p class="kicker kicker--light">Case work</p>
+            <h2 id="cases-h" class="h2">Problems I've taken apart.</h2>
+          </div>
+          <p class="cases__intro">Product teardowns, research and competition cases. Pick one to read the problem, what I did and what it would move.</p>
         </div>
 
-        <div class="cases__panels">
-          <article class="case" role="tabpanel" id="p-blinkbot" aria-labelledby="t-blinkbot" tabindex="0">
-            <p class="case__meta">Product case for Blinkit, independent. <time>May 2026</time> to now.</p>
-            <h3 class="case__title">BlinkBot: a value-exchange basket optimizer</h3>
-            <p class="case__big"><span>₹9 Cr</span> extra GMV a month, projected across 4.5L daily orders</p>
-            <ul>
-              <li>Found the core drop-off trigger: “checkout shock”, a sudden 25 to 30% fee jump that breaks impulse buying and drives cart abandonment.</li>
-              <li>Defined the persona (Aarav, 22, tier 1 city) and mapped the psychology: users don't reject the fee, they reject feeling penalized with no perceived value.</li>
-              <li>Designed BlinkBot, an agentic GenAI flow in three LLM steps (context scan, dynamic bundling, generative nudge) that turns the delivery fee into a personalized value exchange in real time.</li>
-              <li>Projected 20% less cart abandonment, ₹35 AOV lift per order and 20% better D30 repeat purchase.</li>
-            </ul>
-            <p class="case__links">
-              <a href="https://drive.google.com/file/d/13JqOaMulJGSCNLsYfBoL2JAouONL_U6Y/view?usp=sharing" target="_blank" rel="noopener">View slides</a>
-              <a href="https://blinkbotai.lovable.app" target="_blank" rel="noopener">Try the prototype</a>
-            </p>
-          </article>
+        <div class="cases__layout">
+          <div class="cases__index" role="tablist" aria-label="Cases" aria-orientation="vertical">
+            <button class="case-tab" role="tab" id="t-blinkbot" aria-controls="p-blinkbot" aria-selected="true">
+              <span class="case-tab__kind">Product</span>
+              <span class="case-tab__title">BlinkBot for Blinkit</span>
+              <span class="case-tab__fig">₹9 Cr / month</span>
+            </button>
+            <button class="case-tab" role="tab" id="t-district" aria-controls="p-district" aria-selected="false" tabindex="-1">
+              <span class="case-tab__kind">Product</span>
+              <span class="case-tab__title">District by Zomato</span>
+              <span class="case-tab__fig">3x conversion</span>
+            </button>
+            <button class="case-tab" role="tab" id="t-axis" aria-controls="p-axis" aria-selected="false" tabindex="-1">
+              <span class="case-tab__kind">Research</span>
+              <span class="case-tab__title">Axis Bank equity research</span>
+              <span class="case-tab__fig">16% upside</span>
+            </button>
+            <button class="case-tab" role="tab" id="t-ey" aria-controls="p-ey" aria-selected="false" tabindex="-1">
+              <span class="case-tab__kind">Finance</span>
+              <span class="case-tab__title">EY CAFTA risk and liquidity</span>
+              <span class="case-tab__fig">$500M exposure</span>
+            </button>
+            <button class="case-tab" role="tab" id="t-aero" aria-controls="p-aero" aria-selected="false" tabindex="-1">
+              <span class="case-tab__kind">Operations</span>
+              <span class="case-tab__title">Aerospace ops strategy</span>
+              <span class="case-tab__fig">22% faster</span>
+            </button>
+            <button class="case-tab" role="tab" id="t-deorb" aria-controls="p-deorb" aria-selected="false" tabindex="-1">
+              <span class="case-tab__kind">Hackathon</span>
+              <span class="case-tab__title">DeORB, Smart India Hackathon</span>
+              <span class="case-tab__fig">Institute round</span>
+            </button>
+          </div>
 
-          <article class="case" role="tabpanel" id="p-district" aria-labelledby="t-district" tabindex="0">
-            <p class="case__meta">Product case for District by Zomato, independent. <time>Jan 2025</time> to <time>Apr 2025</time>.</p>
-            <h3 class="case__title">District by Zomato: product strategy</h3>
-            <p class="case__big"><span>3x</span> projected conversion lift within a 2 to 5 km radius</p>
-            <ul>
-              <li>Segmented 105M users into behavioral cohorts and surfaced 4 friction points in India's ₹4,500 Cr events market.</li>
-              <li>Benchmarked 3 competitors to build a mood-based discovery positioning for 25M Gen Z users.</li>
-              <li>Proposed “Who's Near You Tonight” with group split payments.</li>
-            </ul>
-            <p class="case__links">
-              <a href="https://drive.google.com/file/d/1SCaFkXVV465xN4ebJC2KT2j3y9N6NiCo/view?usp=sharing" target="_blank" rel="noopener">View slides</a>
-            </p>
-          </article>
+          <div class="cases__panels">
+            <article class="case" role="tabpanel" id="p-blinkbot" aria-labelledby="t-blinkbot" tabindex="0">
+              <p class="case__meta">Product case for Blinkit, independent. <time>May 2026</time> to now.</p>
+              <h3 class="case__title">BlinkBot: a value-exchange basket optimizer</h3>
+              <p class="case__big"><span>₹9 Cr</span> extra GMV a month, projected across 4.5L daily orders</p>
+              <ul>
+                <li>Found the core drop-off trigger: “checkout shock”, a sudden 25 to 30% fee jump that breaks impulse buying and drives cart abandonment.</li>
+                <li>Defined the persona (Aarav, 22, tier 1 city) and mapped the psychology: users don't reject the fee, they reject feeling penalized with no perceived value.</li>
+                <li>Designed BlinkBot, an agentic GenAI flow in three LLM steps (context scan, dynamic bundling, generative nudge) that turns the delivery fee into a personalized value exchange in real time.</li>
+                <li>Projected 20% less cart abandonment, ₹35 AOV lift per order and 20% better D30 repeat purchase.</li>
+              </ul>
+              <p class="case__links">
+                <a href="https://drive.google.com/file/d/13JqOaMulJGSCNLsYfBoL2JAouONL_U6Y/view?usp=sharing" target="_blank" rel="noopener">View slides</a>
+                <a href="https://blinkbotai.lovable.app" target="_blank" rel="noopener">Try the prototype</a>
+              </p>
+            </article>
 
-          <article class="case" role="tabpanel" id="p-axis" aria-labelledby="t-axis" tabindex="0">
-            <p class="case__meta">Finance Club, IIT Bombay. <time>Oct 2025</time> to <time>Nov 2025</time>.</p>
-            <h3 class="case__title">Equity research: Axis Bank Ltd.</h3>
-            <p class="case__big"><span>BUY</span> at ₹1,160 with a ₹1,350 target, 16% upside</p>
-            <ul>
-              <li>Analyzed 7 years of performance: ₹16.5L Cr assets, 17% ROE, 4.1% NIM, 15% capital adequacy.</li>
-              <li>Benchmarked against 3 major private banks on P/E, net NPA (0.4%) and EPS growth.</li>
-            </ul>
-            <p class="case__links">
-              <a href="https://drive.google.com/file/d/1Oq4AeHaycqKcXLXpIfnddOMw5mjNQ_Pj/view?usp=sharing" target="_blank" rel="noopener">Read the report</a>
-            </p>
-          </article>
+            <article class="case" role="tabpanel" id="p-district" aria-labelledby="t-district" tabindex="0">
+              <p class="case__meta">Product case for District by Zomato, independent. <time>Jan 2025</time> to <time>Apr 2025</time>.</p>
+              <h3 class="case__title">District by Zomato: product strategy</h3>
+              <p class="case__big"><span>3x</span> projected conversion lift within a 2 to 5 km radius</p>
+              <ul>
+                <li>Segmented 105M users into behavioral cohorts and surfaced 4 friction points in India's ₹4,500 Cr events market.</li>
+                <li>Benchmarked 3 competitors to build a mood-based discovery positioning for 25M Gen Z users.</li>
+                <li>Proposed “Who's Near You Tonight” with group split payments.</li>
+              </ul>
+              <p class="case__links">
+                <a href="https://drive.google.com/file/d/1SCaFkXVV465xN4ebJC2KT2j3y9N6NiCo/view?usp=sharing" target="_blank" rel="noopener">View slides</a>
+              </p>
+            </article>
 
-          <article class="case" role="tabpanel" id="p-ey" aria-labelledby="t-ey" tabindex="0">
-            <p class="case__meta">EY CAFTA Case Championship, finalist. <time>Sep 2025</time> to <time>Nov 2025</time>.</p>
-            <h3 class="case__title">Financial risk and liquidity management</h3>
-            <p class="case__big"><span>18%</span> fewer working-capital shortfalls in the cash model</p>
-            <ul>
-              <li>Built a currency risk strategy for a $500M unhedged exposure in Nigeria.</li>
-              <li>Designed a cash and liquidity model forecasting $450M in export inflows.</li>
-              <li>Recommended surplus-cash policies for an INR 15 to 20K Cr revenue scale at an 8 to 10% target yield.</li>
-            </ul>
-            <p class="case__links">
-              <a href="https://drive.google.com/file/d/1MUNu1fK9w3oQ-B3bmoziqNy0Lb9kVl91/view?usp=sharing" target="_blank" rel="noopener">View slides</a>
-            </p>
-          </article>
+            <article class="case" role="tabpanel" id="p-axis" aria-labelledby="t-axis" tabindex="0">
+              <p class="case__meta">Finance Club, IIT Bombay. <time>Oct 2025</time> to <time>Nov 2025</time>.</p>
+              <h3 class="case__title">Equity research: Axis Bank Ltd.</h3>
+              <p class="case__big"><span>BUY</span> at ₹1,160 with a ₹1,350 target, 16% upside</p>
+              <ul>
+                <li>Analyzed 7 years of performance: ₹16.5L Cr assets, 17% ROE, 4.1% NIM, 15% capital adequacy.</li>
+                <li>Benchmarked against 3 major private banks on P/E, net NPA (0.4%) and EPS growth.</li>
+              </ul>
+              <p class="case__links">
+                <a href="https://drive.google.com/file/d/1Oq4AeHaycqKcXLXpIfnddOMw5mjNQ_Pj/view?usp=sharing" target="_blank" rel="noopener">Read the report</a>
+              </p>
+            </article>
 
-          <article class="case" role="tabpanel" id="p-aero" aria-labelledby="t-aero" tabindex="0">
-            <p class="case__meta">Course project, Intro to Management. <time>Jan 2025</time> to <time>Apr 2025</time>.</p>
-            <h3 class="case__title">Operations strategy for a global aerospace leader</h3>
-            <p class="case__big"><span>22%</span> faster delivery across 3 major defense contracts</p>
-            <ul>
-              <li>Designed a delivery roadmap after analyzing the supply chain and manufacturing setup.</li>
-              <li>Modeled the financial impact: ₹12 Cr additional revenue over 2 years through retention.</li>
-            </ul>
-          </article>
+            <article class="case" role="tabpanel" id="p-ey" aria-labelledby="t-ey" tabindex="0">
+              <p class="case__meta">EY CAFTA Case Championship, finalist. <time>Sep 2025</time> to <time>Nov 2025</time>.</p>
+              <h3 class="case__title">Financial risk and liquidity management</h3>
+              <p class="case__big"><span>18%</span> fewer working-capital shortfalls in the cash model</p>
+              <ul>
+                <li>Built a currency risk strategy for a $500M unhedged exposure in Nigeria.</li>
+                <li>Designed a cash and liquidity model forecasting $450M in export inflows.</li>
+                <li>Recommended surplus-cash policies for an INR 15 to 20K Cr revenue scale at an 8 to 10% target yield.</li>
+              </ul>
+              <p class="case__links">
+                <a href="https://drive.google.com/file/d/1MUNu1fK9w3oQ-B3bmoziqNy0Lb9kVl91/view?usp=sharing" target="_blank" rel="noopener">View slides</a>
+              </p>
+            </article>
 
-          <article class="case" role="tabpanel" id="p-deorb" aria-labelledby="t-deorb" tabindex="0">
-            <p class="case__meta">Smart India Hackathon 2024, Ministry of Civil Aviation. <time>Sep 2024</time> to <time>Dec 2024</time>.</p>
-            <h3 class="case__title">DeORB: drone surveys for airport perimeter security</h3>
-            <p class="case__big"><span>6</span> person IIT Bombay team, I led business and pitch</p>
-            <ul>
-              <li>Built a drone-based aerial survey solution for airport perimeter security.</li>
-              <li>Cleared the institute round and presented the prototype and go-to-market to an expert panel.</li>
-            </ul>
-            <p class="case__links">
-              <a href="https://drive.google.com/file/d/1jrsrOm20Nrbj3mEBCHLb-6gn8_rd56DR/view?usp=sharing" target="_blank" rel="noopener">View slides</a>
-            </p>
-          </article>
+            <article class="case" role="tabpanel" id="p-aero" aria-labelledby="t-aero" tabindex="0">
+              <p class="case__meta">Course project, Intro to Management. <time>Jan 2025</time> to <time>Apr 2025</time>.</p>
+              <h3 class="case__title">Operations strategy for a global aerospace leader</h3>
+              <p class="case__big"><span>22%</span> faster delivery across 3 major defense contracts</p>
+              <ul>
+                <li>Designed a delivery roadmap after analyzing the supply chain and manufacturing setup.</li>
+                <li>Modeled the financial impact: ₹12 Cr additional revenue over 2 years through retention.</li>
+              </ul>
+            </article>
+
+            <article class="case" role="tabpanel" id="p-deorb" aria-labelledby="t-deorb" tabindex="0">
+              <p class="case__meta">Smart India Hackathon 2024, Ministry of Civil Aviation. <time>Sep 2024</time> to <time>Dec 2024</time>.</p>
+              <h3 class="case__title">DeORB: drone surveys for airport perimeter security</h3>
+              <p class="case__big"><span>6</span> person IIT Bombay team, I led business and pitch</p>
+              <ul>
+                <li>Built a drone-based aerial survey solution for airport perimeter security.</li>
+                <li>Cleared the institute round and presented the prototype and go-to-market to an expert panel.</li>
+              </ul>
+              <p class="case__links">
+                <a href="https://drive.google.com/file/d/1jrsrOm20Nrbj3mEBCHLb-6gn8_rd56DR/view?usp=sharing" target="_blank" rel="noopener">View slides</a>
+              </p>
+            </article>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- Honors + toolkit -->
+    <!-- ============ Honors + toolkit ============ -->
     <section class="honors section" id="honors" aria-labelledby="honors-h">
-      <h2 id="honors-h" class="h2">Honors</h2>
+      <p class="kicker">Honors</p>
+      <h2 id="honors-h" class="h2">Recognition along the way.</h2>
       <ul class="honors__list">
         <li>
-          <h3>Gold medal, national taekwondo</h3>
+          <span class="honors__big">Gold</span>
+          <h3>National taekwondo</h3>
           <p>3rd Grand Open National Taekwondo Championship, Talkatora Stadium, Delhi. Red-black belt certified.</p>
         </li>
         <li>
-          <h3>Certificate of Excellence</h3>
-          <p>Awarded by the former Education Minister of New Delhi for performance in the Class 12 CBSE boards.</p>
+          <span class="honors__big">Excellence</span>
+          <h3>Class 12 CBSE boards</h3>
+          <p>Certificate of Excellence from the former Education Minister of New Delhi.</p>
         </li>
         <li>
-          <h3>School overall 2nd runner-up</h3>
+          <span class="honors__big">2nd runner-up</span>
+          <h3>School overall</h3>
           <p>Recognised across academics and co-curriculars at St. Andrews Scots Sr. Sec. School, New Delhi.</p>
         </li>
       </ul>
@@ -384,28 +461,37 @@
       <div class="kit">
         <div>
           <h3 class="kit__title">What I'm good at</h3>
-          <p class="kit__list">Consulting, product management, strategy, equity research, brand and PR, generative AI, user personas, quantitative research, storytelling</p>
+          <ul class="chips">
+            <li>Consulting</li><li>Product management</li><li>Strategy</li><li>Equity research</li><li>Brand and PR</li><li>Generative AI</li><li>User personas</li><li>Quantitative research</li><li>Storytelling</li>
+          </ul>
         </div>
         <div>
           <h3 class="kit__title">Tools I use</h3>
-          <p class="kit__list">Advanced Excel, Notion, Jira, Tableau, Power BI, Figma, Python, C++, NumPy, After Effects, Photoshop</p>
+          <ul class="chips chips--quiet">
+            <li>Advanced Excel</li><li>Notion</li><li>Jira</li><li>Tableau</li><li>Power BI</li><li>Figma</li><li>Python</li><li>C++</li><li>NumPy</li><li>After Effects</li><li>Photoshop</li>
+          </ul>
         </div>
       </div>
     </section>
 
-    <!-- Contact -->
+    <!-- ============ Contact (orange panel) ============ -->
     <section class="contact" id="contact" aria-labelledby="contact-h">
-      <div class="contact__inner">
+      <div class="contact__panel">
         <h2 id="contact-h" class="contact__h">Have a problem worth solving?</h2>
-        <p class="contact__p">I'm open to conversations about consulting, product and strategy: internships, case competitions, or just a chat.</p>
-        <div class="contact__mail">
-          <a href="mailto:rishiraajkhurma@gmail.com" class="contact__email">rishiraajkhurma@gmail.com</a>
-          <button type="button" class="copy" data-copy="rishiraajkhurma@gmail.com">Copy email</button>
+        <div class="contact__row">
+          <p class="contact__p">I'm open to conversations about consulting, product and strategy: internships, case competitions, or just a chat.</p>
+          <div class="contact__actions">
+            <div class="contact__mail">
+              <a href="mailto:rishiraajkhurma@gmail.com" class="contact__email">rishiraajkhurma@gmail.com</a>
+              <button type="button" class="copy" data-copy="rishiraajkhurma@gmail.com">Copy email</button>
+            </div>
+            <ul class="contact__links">
+              <li><a href="https://www.linkedin.com/in/rishiraajkhurma" target="_blank" rel="noopener">LinkedIn</a></li>
+              <li><a href="tel:+919818846623">+91 98188 46623</a></li>
+            </ul>
+          </div>
         </div>
-        <ul class="contact__links">
-          <li><a href="https://www.linkedin.com/in/rishiraajkhurma" target="_blank" rel="noopener">LinkedIn</a></li>
-          <li><a href="tel:+919818846623">+91 98188 46623</a></li>
-        </ul>
+        <p class="contact__giant" aria-hidden="true">Khurma</p>
       </div>
       <footer class="foot">
         <p>© 2026 Rishiraaj Khurma</p>
