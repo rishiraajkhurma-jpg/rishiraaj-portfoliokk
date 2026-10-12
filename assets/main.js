@@ -50,20 +50,26 @@
     }
   }
 
+  /* ---------- Shrink card figures until they fit their card ---------- */
+  const fitCards = () => {
+    document.querySelectorAll('.card__big').forEach((el) => {
+      el.style.fontSize = '';
+      let size = parseFloat(getComputedStyle(el).fontSize);
+      let guard = 40;
+      while (guard-- > 0 && (el.scrollWidth > el.clientWidth + 1) && size > 12) {
+        size -= 1;
+        el.style.fontSize = size + 'px';
+      }
+    });
+  };
+  fitCards();
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(fitCards);
+  let fitTimer;
+  window.addEventListener('resize', () => { clearTimeout(fitTimer); fitTimer = setTimeout(fitCards, 150); });
+
   /* ---------- Card belt: cards drift left to right forever ---------- */
   if (deck && rig && !reduce) {
-    const originals = [...rig.querySelectorAll('.card')];
-    const n = originals.length;
-    // a second copy of the set keeps the belt full so cards wrap off-screen
-    originals.forEach((c) => {
-      const d = c.cloneNode(true);
-      d.setAttribute('aria-hidden', 'true');
-      d.tabIndex = -1;
-      const pos = +c.style.getPropertyValue('--i') + n;
-      d.style.setProperty('--i', pos);
-      d.style.setProperty('--a', Math.abs(pos));
-      rig.appendChild(d);
-    });
+    // 12 unique cards cover the width, so the belt never shows a repeat on screen
     const cards = [...rig.querySelectorAll('.card')];
     const N = cards.length;
     const half = N / 2;
@@ -178,17 +184,18 @@
     });
 
     const draw = () => {
+      flight.classList.add('is-building');
       if (reduce) {
         pts.forEach(({ g }) => g.classList.add('is-on'));
         flight.classList.add('is-drawn');
         return;
       }
-      const DUR = 1900;
+      const DUR = 2400, DELAY = 900; // let the axes and grid build first
       const ease = (t) => 1 - Math.pow(1 - t, 3);
       let t0 = null;
       const tick = (ts) => {
         if (t0 === null) t0 = ts;
-        const t = Math.min(1, (ts - t0) / DUR);
+        const t = Math.max(0, Math.min(1, (ts - t0 - DELAY) / DUR));
         const e = ease(t);
         path.style.strokeDashoffset = drawn * (1 - e);
         const reached = e * NOW;
