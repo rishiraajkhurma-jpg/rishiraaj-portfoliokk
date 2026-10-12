@@ -19,7 +19,15 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,300..900;1,62..125,300..900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/assets/styles.css">
-  <script>document.documentElement.classList.add('js')</script>
+  <script>
+    (function () {
+      var d = document.documentElement, t = null;
+      d.classList.add('js');
+      try { t = localStorage.getItem('theme'); } catch (e) {}
+      if (t !== 'light' && t !== 'dark') t = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      d.setAttribute('data-theme', t);
+    })();
+  </script>
 </head>
 <body>
   <a class="skip" href="#main">Skip to content</a>
@@ -35,7 +43,15 @@
           <li><a href="#honors">Honors</a></li>
         </ul>
       </nav>
-      <a class="bar__cta" href="#contact">Get in touch</a>
+      <div class="bar__end">
+        <button type="button" class="theme" aria-label="Switch to dark theme" aria-pressed="false">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="2"/>
+            <path d="M12 3.5a8.5 8.5 0 0 1 0 17z" fill="currentColor"/>
+          </svg>
+        </button>
+        <a class="bar__cta" href="#contact">Get in touch</a>
+      </div>
     </div>
     <div class="bar__progress" aria-hidden="true"><span></span></div>
   </header>

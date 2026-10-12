@@ -24,6 +24,29 @@
   --spring: cubic-bezier(.3, 1.35, .45, 1);
 }
 
+/* Dark theme: same structure, inverted surfaces */
+:root[data-theme="dark"] {
+  --paper: #0D1322;
+  --paper-2: #161E31;
+  --ink: #ECEDE8;
+  --muted: #9AA3B5;
+  --rule: #2A3349;
+  --orange-ink: #FF7A3D;
+  --navy: #1D2A48;
+  --panel: #161F35;
+  --panel-2: #1F2943;
+  --panel-rule: #303B56;
+  color-scheme: dark;
+}
+:root[data-theme="dark"] .card--photo img { filter: grayscale(1) contrast(1.05) brightness(.95); }
+:root[data-theme="dark"] .org { color: #6E778A; }
+:root[data-theme="dark"] .org:hover { color: var(--ink); }
+:root[data-theme="dark"] .card { box-shadow: 0 30px 40px -24px rgba(0, 0, 0, .7); }
+:root[data-theme="dark"] .badge { box-shadow: 0 10px 30px -12px rgba(0, 0, 0, .7); }
+.theme-anim, .theme-anim *, .theme-anim *::before, .theme-anim *::after {
+  transition: background-color .45s ease, color .45s ease, border-color .45s ease, fill .45s ease, stroke .45s ease !important;
+}
+
 /* ================= Base ================= */
 *, *::before, *::after { box-sizing: border-box; }
 html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
@@ -111,8 +134,19 @@ ul { padding: 0; list-style: none; }
 }
 .bar__nav a:hover { color: var(--ink); }
 .bar__nav a[aria-current="true"] { color: var(--paper); background: var(--ink); }
+.bar__end { justify-self: end; display: flex; align-items: center; gap: 10px; }
+.theme {
+  width: 42px; height: 42px; border-radius: 50%;
+  display: grid; place-items: center;
+  background: color-mix(in srgb, var(--paper-2) 80%, transparent);
+  border: 1px solid var(--rule);
+  color: var(--ink); cursor: pointer; padding: 0;
+  transition: border-color .25s, background .25s;
+}
+.theme:hover { border-color: var(--ink); }
+.theme svg { width: 20px; height: 20px; transition: transform .6s var(--spring); }
+:root[data-theme="dark"] .theme svg { transform: rotate(180deg); }
 .bar__cta {
-  justify-self: end;
   text-decoration: none; font-size: 14px; font-weight: 600;
   padding: 10px 18px; border-radius: 999px;
   background: var(--orange); color: #fff;
@@ -312,7 +346,7 @@ ul { padding: 0; list-style: none; }
     var(--paper-2);
   color: var(--ink);
 }
-.card--white { background: #FBFBF9; color: var(--ink); }
+.card--white { background: #FBFBF9; color: #0F1729; }
 .card--navy { background: linear-gradient(180deg, #213055, var(--navy)); color: var(--panel-ink); }
 .card--navy .card__big { color: #fff; }
 .card--line { background: var(--paper); color: var(--ink); border: 2px solid var(--ink); }
@@ -492,7 +526,7 @@ ul { padding: 0; list-style: none; }
   transition: background .3s, color .3s;
 }
 .case-tab:hover { background: var(--panel-2); color: var(--panel-ink); }
-.case-tab[aria-selected="true"] { background: var(--panel-ink); color: var(--ink); }
+.case-tab[aria-selected="true"] { background: var(--panel-ink); color: var(--panel); }
 .case-tab:focus-visible { outline: 2px solid var(--orange); outline-offset: 2px; }
 .case-tab__kind, .case-tab__fig { font-size: 13px; }
 .case-tab__kind { grid-area: kind; }
@@ -523,7 +557,7 @@ ul { padding: 0; list-style: none; }
 .case__links a {
   text-decoration: none; font-weight: 600; font-size: 15px;
   padding: 11px 20px; border-radius: 999px;
-  background: var(--panel-ink); color: var(--ink);
+  background: var(--panel-ink); color: var(--panel);
   transition: background .25s, color .25s, font-variation-settings .35s var(--ease);
 }
 .case__links a:hover { background: var(--orange); color: #fff; font-variation-settings: "wdth" 116; }
@@ -589,12 +623,12 @@ ul { padding: 0; list-style: none; }
 .contact__email:hover { font-variation-settings: "wdth" 122; text-decoration-color: #fff; }
 .copy {
   font: inherit; font-size: 14px; font-weight: 600;
-  color: var(--ink); background: #fff; border: 0;
+  color: #0F1729; background: #fff; border: 0;
   border-radius: 999px; padding: 10px 18px; cursor: pointer;
   transition: background .25s, color .25s;
 }
-.copy:hover { background: var(--ink); color: #fff; }
-.copy.is-done { background: var(--ink); color: #fff; }
+.copy:hover { background: #0F1729; color: #fff; }
+.copy.is-done { background: #0F1729; color: #fff; }
 .contact__links { margin-top: 24px; display: flex; flex-wrap: wrap; gap: 10px; }
 .contact__links a {
   display: inline-block; text-decoration: none; font-weight: 600; font-size: 15px;

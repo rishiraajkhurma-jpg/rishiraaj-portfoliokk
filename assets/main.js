@@ -242,6 +242,30 @@
     });
   });
 
+  /* ---------- Theme toggle ---------- */
+  const root = document.documentElement;
+  const themeBtn = document.querySelector('.theme');
+  const metaTheme = document.querySelector('meta[name="theme-color"]');
+  const syncTheme = () => {
+    const dark = root.getAttribute('data-theme') === 'dark';
+    themeBtn.setAttribute('aria-pressed', dark);
+    themeBtn.setAttribute('aria-label', dark ? 'Switch to light theme' : 'Switch to dark theme');
+    if (metaTheme) metaTheme.setAttribute('content', dark ? '#0D1322' : '#E9EAE6');
+  };
+  if (themeBtn) {
+    syncTheme();
+    themeBtn.addEventListener('click', () => {
+      const next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      if (!reduce) {
+        root.classList.add('theme-anim');
+        setTimeout(() => root.classList.remove('theme-anim'), 500);
+      }
+      root.setAttribute('data-theme', next);
+      try { localStorage.setItem('theme', next); } catch (e) {}
+      syncTheme();
+    });
+  }
+
   /* ---------- Copy email ---------- */
   document.querySelectorAll('.copy').forEach((btn) => {
     const label = btn.textContent;
