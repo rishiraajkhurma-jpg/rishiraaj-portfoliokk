@@ -42,7 +42,7 @@
 .c3-h { margin-top: clamp(22px, 3vw, 36px); font-weight: 900; letter-spacing: -0.04em; line-height: .95; font-variation-settings: "wdth" 116; }
 .c3-line { display: block; font-size: clamp(2.2rem, 5vw, 4.4rem); color: var(--muted); font-weight: 700; }
 .c3-rot { display: block; font-size: clamp(2.8rem, 7.2vw, 6.4rem); line-height: 1.1; height: 1.15em; overflow: hidden; margin-top: .05em; }
-.c3-word { display: inline-block; color: var(--ink); background: linear-gradient(transparent 78%, color-mix(in srgb, var(--orange) 55%, transparent) 78%); transition: transform .38s var(--ease), opacity .38s var(--ease); }
+.c3-word { display: inline-block; white-space: nowrap; color: var(--ink); background: linear-gradient(transparent 78%, color-mix(in srgb, var(--orange) 55%, transparent) 78%); transition: transform .38s var(--ease), opacity .38s var(--ease); }
 .c3-word.is-out { transform: translateY(-100%); opacity: 0; }
 .c3-word.is-in { transform: translateY(100%); opacity: 0; transition: none; }
 .c3-lede { margin: clamp(18px, 2.4vw, 28px) auto 26px; max-width: 52ch; color: var(--muted); font-size: 18px; }
@@ -98,12 +98,12 @@
       </div>
       <script>
         (function () {
-          var words = ['product strategy', 'AI agents', 'go-to-market', 'brand and storytelling', 'case competitions'];
+          var words = ['product strategy', 'AI agents', 'go-to-market', 'storytelling', 'growth'];
           var el = document.querySelector('.c3-word'); var i = 0;
           if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
           setInterval(function () {
             el.classList.add('is-out');
-            setTimeout(function () { i = (i + 1) % words.length; el.textContent = words[i]; el.classList.remove('is-out'); el.classList.add('is-in'); requestAnimationFrame(function () { requestAnimationFrame(function () { el.classList.remove('is-in'); }); }); }, 380);
+            setTimeout(function () { i = (i + 1) % words.length; el.textContent = words[i]; el.classList.remove('is-out'); el.classList.add('is-in'); void el.offsetWidth; setTimeout(function () { el.classList.remove('is-in'); }, 30); }, 380);
           }, 2300);
         })();
       </script>
